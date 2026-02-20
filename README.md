@@ -1,119 +1,156 @@
-# 📊 EDA — Análise de Desempenho Logístico de Entregas (Parceria Semantix)
+📊 EDA — Análise de Desempenho Logístico e Satisfação do Cliente
+(Parceria Semantix)
+🚀 Sobre o Projeto
 
-## 🚀 Sobre o Projeto
+Este repositório apresenta uma Análise Exploratória de Dados (EDA) aplicada ao desempenho logístico de entregas em um grande e-commerce brasileiro, integrando indicadores operacionais de entrega com avaliações de satisfação dos clientes.
 
-Este repositório contém a implementação de uma **Análise Exploratória de Dados (EDA)** aplicada ao desempenho logístico de entregas em um grande e-commerce brasileiro, com foco em atrasos, diferenças regionais e métricas de eficiência.
+O projeto foi desenvolvido no contexto acadêmico, com apoio e parceria da Semantix, e tem como objetivo demonstrar a aplicação prática de técnicas de tratamento de dados, análise exploratória e visualização, utilizando dados reais para responder a problemas de negócio relevantes, como atrasos logísticos, diferenças regionais e impacto na experiência do cliente.
 
-O projeto foi desenvolvido como parte da disciplina de análise de dados, com apoio e **parceria da Semantix**, e tem como objetivo demonstrar o uso prático de dados para entender e solucionar um problema real de negócio: **atrasos na entrega de pedidos e suas causas regionais**.
+📌 Problemática
 
----
+Atrasos na entrega representam um dos principais desafios operacionais do e-commerce. Além de impactarem custos logísticos, esses atrasos afetam diretamente a percepção do cliente, refletida em avaliações e níveis de satisfação.
 
-## 📌 Problemática
+Neste projeto, buscamos responder questões como:
 
-Atrasos na entrega de pedidos são um dos maiores desafios operacionais para empresas de e-commerce. Eles impactam diretamente a experiência dos clientes, aumentam custos logísticos e podem comprometer a competitividade da empresa.
+Onde estão concentrados os atrasos de entrega no Brasil?
 
-Neste projeto, buscamos responder perguntas como:
-- Onde estão concentrados os atrasos no Brasil?
-- Quais regiões apresentam maior percentual de atraso?
-- Qual é o impacto de atrasos quando considerado o volume de entregas?
-- Como as variáveis se correlacionam entre si?
+Quais regiões apresentam maior percentual e maior tempo médio de atraso?
 
----
+Como o volume de pedidos influencia a análise de atrasos regionais?
 
-## 📁 Estrutura do Repositório
+Existe relação entre atraso na entrega e avaliação do cliente?
 
-O repositório está organizado da seguinte forma:
+Qual o impacto do desempenho logístico na satisfação do consumidor?
 
+📁 Estrutura do Repositório
 projeto-olist-logistica/
 │
 ├── data/
-│ ├── raw/ # Dados brutos obtidos do Kaggle
-│ │ ├── olist_orders_dataset.csv
-│ │ └── olist_customers_dataset.csv
-│ │
-│ └── processed/ # Dados preparados com PySpark
-│ ├── pedidos_clientes_tratado.csv
-│ └── agg_regiao_entrega.csv
+│   ├── raw/                 # Dados brutos obtidos do Kaggle
+│   │   ├── olist_orders_dataset.csv
+│   │   ├── olist_customers_dataset.csv
+│   │   └── olist_order_reviews_dataset.csv
+│   │
+│   └── processed/           # Dados tratados e consolidados
+│       ├── pedidos_reviews_clientes.csv
+│       └── agg_regiao_entrega.csv
 │
 ├── notebooks/
-│ ├── 01_etl_spark.ipynb # Tratamento e preparação de dados
-│ └── 02_eda_pandas.ipynb # Análise exploratória e correlações
+│   ├── 01_etl_spark.ipynb   # Tratamento, integração e preparação dos dados (PySpark)
+│   └── 02_eda_pandas.ipynb  # EDA, correlações e visualizações (Pandas)
 │
 ├── dashboard/
-│ └── looker_studio_link.txt
+│   └── looker_studio_link.txt
 │
 └── README.md
 
-
----
-
-## 📊 Fonte dos Dados
+📊 Fonte dos Dados
 
 Os dados utilizados foram obtidos a partir do dataset público:
 
-**Brazilian E-Commerce Public Dataset by Olist** — disponível no Kaggle:  
+Brazilian E-Commerce Public Dataset by Olist
+Disponível no Kaggle:
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-Esse dataset contém dados reais anonimizados de um e-commerce incluindo informações sobre clientes, pedidos, entregas e localização geográfica.
+O dataset contém dados reais anonimizados de um e-commerce brasileiro, incluindo informações sobre pedidos, clientes, entregas, avaliações e localização geográfica.
 
----
+🛠️ Tecnologias Utilizadas
+Ferramenta	Finalidade
+🐍 Python	Linguagem principal
+⚡ PySpark	Tratamento, integração e agregações de dados
+📊 Pandas	Análise exploratória e estatística
+📈 Seaborn / Matplotlib	Visualizações e gráficos
+📋 Looker Studio	Dashboard interativo
+📌 Etapas do Projeto
+1️⃣ Tratamento e Preparação dos Dados (PySpark)
 
-## 🛠️ Tecnologias Utilizadas
+Nesta etapa, os dados brutos do Kaggle foram processados utilizando PySpark, garantindo escalabilidade e boas práticas de engenharia de dados.
 
-| Ferramenta            | Propósito                          |
-|----------------------|------------------------------------|
-| 🐍 Python            | Linguagem principal                |
-| ⚡ PySpark           | Tratamento e preparação dos dados  |
-| 📊 Pandas           | Análise exploratória e estatística |
-| 📈 Seaborn/Matplotlib | Visualizações gráficos             |
-| 📋 Looker Studio     | Dashboard interativo               |
+Principais atividades realizadas:
 
----
+Leitura dos dados brutos
 
-## 📌 Detalhes das Etapas
+Padronização e tratamento de colunas de data
 
-### 1️⃣ Tratamento de Dados (PySpark)
-Nesta etapa, os dados brutos do Kaggle foram lidos, integrados e transformados para gerar dois datasets finais:
+Integração das tabelas de pedidos e clientes
 
-- **pedidos_clientes_tratado.csv** — dados por pedido com métricas de atraso
-- **agg_regiao_entrega.csv** — dados agregados por região
+Criação de variáveis relacionadas ao tempo de entrega
 
-Foram realizadas:
-- padronização de datas
-- junção entre pedidos e clientes
-- criação de métricas de tempo (total_days, days_delay)
-- classificação de status de entrega
-- agregação por região
+Cálculo da diferença entre datas estimadas e reais de entrega
 
-### 2️⃣ Análise Exploratória (EDA com Pandas)
-Utilizando os dados tratados:
-- foram geradas análises descritivas
-- exploradas distribuições e padrões
-- calculadas correlações entre métricas
-- produzidas visualizações de apoio
+Classificação de pedidos entregues no prazo e com atraso
 
-### 3️⃣ Dashboard (Looker Studio)
-Com os dados resultantes, foi criado um dashboard no Looker Studio para:
-- comparar regiões
-- visualizar KPIs de desempenho
-- evidenciar insights relevantes
+Tratamento da tabela de avaliações (order_reviews), incluindo:
 
----
+seleção apenas das colunas relevantes (order_id e review_score)
 
-## 😄 Agradecimentos
+remoção de registros nulos
 
-Este projeto foi desenvolvido com o apoio da **Semantix**, reforçando a importância da análise de dados aplicada a problemas reais de negócios.
+tratamento de valores inconsistentes e textos inválidos
 
----
+garantia de uma única avaliação por pedido
 
-## 📜 Licença
+Integração das avaliações à base principal de pedidos
 
-Este projeto está sob a licença **MIT License** — consulte o arquivo `LICENSE` para mais detalhes.
+Geração de bases finais em formato CSV para análise e visualização
 
----
+Principais datasets gerados:
 
-## 👤 Autor
+pedidos_reviews_clientes.csv — base consolidada por pedido
 
-**João Victor Sacramento**  
-Analista em formação — foco em análise de dados, engenharia de dados e storytelling de dados.
+agg_regiao_entrega.csv — métricas agregadas por região
 
+2️⃣ Análise Exploratória de Dados (EDA — Pandas)
+
+A partir dos dados tratados, foi realizada a análise exploratória com Pandas, focando em:
+
+estatísticas descritivas
+
+distribuição de atrasos
+
+comparação regional de métricas logísticas
+
+análise de volume de pedidos
+
+relação entre atraso de entrega e avaliação do cliente
+
+gráficos de correlação e dispersão para identificar padrões relevantes
+
+Os dados agregados no PySpark foram convertidos para Pandas exclusivamente para fins de visualização.
+
+3️⃣ Dashboard Interativo (Looker Studio)
+
+Com a base final consolidada, foi construído um dashboard no Looker Studio com foco em:
+
+KPIs de desempenho logístico
+
+comparação entre regiões
+
+percentual de pedidos atrasados e no prazo
+
+análise de satisfação do cliente
+
+suporte visual à tomada de decisão
+
+📈 Principais Insights Esperados
+
+Regiões com maior volume de pedidos nem sempre apresentam maior percentual de atraso
+
+Atrasos de entrega tendem a impactar negativamente a avaliação dos clientes
+
+Existe variação significativa no desempenho logístico entre regiões
+
+Métricas agregadas são fundamentais para evitar interpretações enviesadas por volume
+
+🤝 Agradecimentos
+
+Este projeto foi desenvolvido com o apoio da Semantix, reforçando a importância da análise de dados aplicada a problemas reais de negócio e a integração entre desempenho operacional e experiência do cliente.
+
+📜 Licença
+
+Este projeto está sob a licença MIT License. Consulte o arquivo LICENSE para mais detalhes.
+
+👤 Autor
+
+João Victor Sacramento
+Analista em formação, com foco em Análise de Dados, Engenharia de Dados e Storytelling com Dados.
