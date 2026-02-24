@@ -1,9 +1,10 @@
-📊 Análise de Desempenho Logístico e Satisfação do Cliente — Olist
+#📊 Análise de Desempenho Logístico e Satisfação do Cliente — Olist
+
 🧠 Introdução do Projeto
 
-Este projeto tem como objetivo analisar o desempenho logístico de entregas em um e-commerce brasileiro, avaliando atrasos, tempo médio de entrega e impacto na satisfação do cliente.
+Este projeto tem como objetivo analisar o desempenho logístico de entregas em um e-commerce brasileiro, avaliando atrasos, tempo médio de entrega e o impacto na satisfação do cliente.
 
-A análise foi desenvolvida a partir de dados reais do Olist, utilizando engenharia de dados, análise exploratória e visualização interativa, com foco em gerar insights claros e acionáveis para tomada de decisão operacional.
+A análise foi desenvolvida a partir de dados reais do Olist, utilizando engenharia de dados, análise exploratória e visualização interativa, com foco em gerar insights claros e acionáveis para apoiar a tomada de decisão operacional.
 
 📊 Coleta de Dados
 
@@ -12,7 +13,7 @@ Os dados utilizados são públicos e foram obtidos a partir do dataset:
 Brazilian E-Commerce Public Dataset by Olist (Kaggle)
 🔗 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-Arquivos CSV utilizados:
+Arquivos CSV utilizados
 
 Dados brutos
 
@@ -32,7 +33,7 @@ Os dados contêm informações anonimizadas sobre pedidos, clientes, entregas, a
 
 🧱 Modelagem e Tratamento dos Dados
 
-O processamento dos dados foi realizado em duas etapas:
+O processamento dos dados foi realizado em duas etapas principais:
 
 🔹 Engenharia de Dados (PySpark)
 
@@ -42,7 +43,7 @@ Padronização de campos de data
 
 Cálculo do tempo real de entrega
 
-Classificação de pedidos no prazo e atrasados
+Classificação de pedidos entregues no prazo e com atraso
 
 Remoção de registros inconsistentes e duplicados
 
